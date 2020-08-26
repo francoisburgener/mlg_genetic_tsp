@@ -1,0 +1,267 @@
+<!DOCTYPE html PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Mozilla/4.78 [en] (X11; U; Linux 2.4.7-10 i686) [Netscape]">
+<style>
+body {width:1000px; margin:auto;}
+</style>
+</head>
+
+<body link="#0000ef" alink="#ff0000" bgcolor="#ffffff" text="#000000" vlink="#52188c">
+
+<blockquote>
+  <center>
+  
+  <hr width="100%"></center>
+  
+  <p>
+  </p>
+  <center>
+  <table nosave="" bgcolor="#ffffcc" border="2" cols="1" width="60%">
+    <tbody>
+
+      <tr nosave="">
+
+        <td nosave="">
+  
+        <center><b><font size="+4">Genetic Algorithms</font></b>
+
+        <p><b><font size="+3">A tool for optimization</font></b></p>
+
+        </center>
+
+        </td>
+
+      </tr>
+
+    </tbody>
+
+  </table>
+
+  </center>
+
+  <div align="right">Andres Perez-Uribe</div>
+
+  <hr width="100%">
+  <br>
+
+&nbsp;
+  
+  <center>
+  
+  <div style="text-align: center;"></div>
+
+  <table style="text-align: left; width: 673px; height: 317px;" border="1" cellpadding="2" cellspacing="2">
+
+    <tbody>
+
+      <tr>
+
+        <td style="text-align: center;"><img style="width: 185px; height: 233px;" src="darwin_charles.gif" alt=""></td>
+
+        <td>
+        
+        <p style="text-align: center;"><span style="font-weight: bold;">"Il y a une grandeur dans cette vision de la vie."</span><br style="font-weight: bold;">
+
+        <br style="font-weight: bold;">
+
+        <span style="font-weight: bold;">C. Darwin (1859)</span></p>
+
+        </td>
+
+      </tr>
+
+    
+    </tbody>
+  
+  </table>
+  
+  <br>
+
+  </center>
+
+  <h2>Objective</h2>
+
+  Use a genetic algorithm in Python to solve diverse optimization problems.  
+  
+  <hr>
+  <p>
+  To start, we must setup a Python 2.7 environment, because
+  <b>pyevolve</b> has not been ported to Python 3 yet :(
+  </p>
+  <p>
+  You will find a requirement file for that: <a
+  href="GA_py27_requirements.txt">GA_py27_requirements.txt</a>. Therefore,
+  try the following steps:
+  </p>
+  <pre>
+  conda create -n python27 python=2.7
+  conda activate python27
+  pip install -r GA_py27_requirements.txt
+  python -m ipykernel install --user --name python27 --display-name python27
+  jupyter notebook -> and select the python27 kernel
+  </pre>
+  
+  <p>
+  Download the following <a href="MLG_pyevolve_examples.zip">collection of notebooks</a>
+  containing several examples of GA applications.
+  </p>
+  
+  <h2>1. Minimal pyevolve Genetic Algorithm</h2>
+  <p>
+  The notebook <b>GA_evo-bitstring-minimal.ipynb</b> example uses pyevolve to evolve a bitstring of only ones.
+  </p>
+  <h2>2. Configuring the GA algorithm and plotting the evolution</h2>
+
+  <p>
+  The notebook <b>GA_evo-bitstring.ipynb</b> example uses pyevolve to
+  evolve a bitstring of only ones. It allows the user to configure the
+  GA by indicating the size of the population, the mutation and
+  crossover parameters, etc. It moreover, records statistics about the
+  evolved population to allow the user to plot the evolution of the
+  fitness over generations.
+  </p>
+  
+  <h2>3. Evolution of a list of values</h2>
+
+  <p>
+  The notebook <b>GA_evo-list.ipynb</b> example uses pyevolve to
+  evolve a chromosome composed of a list of elements instead of a
+  bitstring. A minimal application consists on evolving a list of
+  only zeroes, starting from random integer values in a given range.
+  This example introduces the use of the method <b>stepCallback</b>
+  that allows the user to monitor the evolution process. Here, we
+  print the current best solution found by the genetic algorithm.
+  </p>
+
+  <h2>4. Evolution of a string: Dawkin's Weasel experiment</h2>
+  
+  <p>
+  The notebook <b>GA_evo-string.ipynb</b> example uses pyevolve to
+  evolve a chromosome composed of a list of integers in the range 65
+  to 95, which includes the ASCII letters 'A' to 'Z' and '_', herein
+  used as a space between words. We attempt to evolve the sequence of
+  letters that compose the phrase: "METHINKS_IT_IS_LIKE_A_WEASEL". 
+  </p>
+
+  <h2>5. Function maximization</h2>
+
+  <p>
+  The notebook <b>GA_evo-binaryMaxFunc.ipynb</b> example uses pyevolve
+  to evolve the parameters of an equation (shown below) that we want to maximize:
+  </p>
+
+  <p>
+  f = (x0 * x1 * x2 * x3) / (x4 * x5 * x6 * x7), where x0, x1,
+  ... x7 are integers in the range 1 &lt; xi &lt; 16.
+  </p>
+
+  <p>
+  The solution to this problem is very easy... f is maximized when x0 =
+  x1 = x2 = x3 = 16 and  x4 = x5 = x6 = x7 = 1.
+  </p>
+  <p>
+  The interest of this example is that it will show you how important is
+  the coding of the solution into the efficacy of a genetic
+  algorithm. To understand this, run the notebook and see if it can
+  solve the proposed problem. Observe how we coded the values: every xi
+  codes in binary an integer value, thus xi = bit3 * 2^3 + bit2 * 2^2
+  + bit1 * 2^1 + bit0 * 2^0, and '0000' codes for 16.
+  </p>
+  <p>
+  What is the maximum fitness ?<br>
+  What is the bitstring that codes the optimal solution ?<br>
+  What is the problem ? can you code the solution in a different way to
+  facilitate the evolutionary process ?<p>
+  </p>
+
+  <h2>6. The Traveling Salesman Problem (TSP)</h2>
+
+  <p>
+  The travelling salesman problem (TSP) asks the following question:
+  Given a list of cities and the distances between each pair of cities,
+  what is the <b>shortest</b> possible route that visits each city <b>exactly once</b>
+  and returns to the origin city? It is an NP-hard problem in
+  combinatorial optimization, important in operations research and
+  theoretical computer science [Wikipedia].
+  </p>
+  <p>
+  The objective of this exercise is to solve the TSP problem for a set
+  of 14 cities in Burma, officially the Republic of the Union of
+  Myanmar. The following vectors give the GPS position of each city.
+  </p>
+  <pre>
+   LAT = [16.47, 16.47, 20.09, 22.39, 25.23, 22.00, 20.47, 
+          17.20, 16.30, 14.05, 16.53, 21.52, 19.41, 20.09]
+
+   LON = [96.10, 94.44, 92.54, 93.37, 97.24, 96.05, 97.02, 
+          96.29, 97.38, 98.12, 97.38, 95.59, 97.13, 94.55]
+  </pre>
+
+  <p>
+  Consider that the distance between two cities is not the
+  Euclidean distance. You have to consider that they are points on the
+  surface of the Earth, which can be considered to be an <b>oblate
+  spheroid</b>.
+  </p>
+  
+  <h2>Report*</h2>
+  <p>
+  <b>Page 1:</b>
+  Provide a title, your names, school name, course, date 
+  </p>
+  <p>
+  6.1. Briefly explain the problem and your solution (1/2 page).
+  </p>
+  <p>
+  <b>Page 2:</b>
+  </p>
+  <p>
+  6.2 Provide the better route you found and the shortest path in
+  kilometers. Is it the optimal shortest path ? explain.
+  </p>
+  <p>
+  6.3 Describe your fitness function
+  </p>
+  <p>
+  <b>Page 3:</b>
+  </p>
+  <p>
+  6.4 Explain the way you encoded the solution, give a chromosome
+  example.
+  </p>
+  <p>
+  6.5 Provide the configuration of the GA you finally used to find your
+  better results: mutation, crossover,
+  population size, type of selection, mutation, crossover used, number
+  of generations. Describe the methodology or experiments performed in
+  order to get your better results.
+  </p>
+  <p>
+  <b>Page 4:</b>
+  </p>
+  <p>
+  6.6 Provide relevant plots of your experiments and explanations.
+  </p>
+  <p>
+  <b>Page 5:</b>
+  </p>
+  <p>
+  6.5 Conclusions (1/2 page) + [optional] eventual supplementary comments (1/2 page) 
+  </p>
+  <p>
+  Upload to cyberlearn your zip file named name1name2.zip including your notebook and
+  the report in PDF.
+  </p>
+  <p>
+  <b>* Delay: please check on Cyberlearn. The report only concerns the point 6 of
+  the practical work. </b>
+  </p>
+  <hr>
+  MLG 2019
+
+</blockquote>
+
+</body>
+</html>
